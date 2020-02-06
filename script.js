@@ -1,5 +1,5 @@
 //To be replaced with and event listner
-search("sandwich");
+search("kumpir");
 
 //searches for a recipe and displays the ingredients
 function search(searchTerm){
@@ -29,21 +29,24 @@ function search(searchTerm){
 			
 			<span class="ingredient-line">
             <button type="button" class="btn btn-danger fas fa-times x-button"></button>
-            <p class="ingredient-info">${response.meals[0][strMeas]} ${response.meals[0][strIng]}: <span id="calCnt${i}"></span> Calories</p>
+            <p class="ingredient-info">${response.meals[0][strMeas]} ${response.meals[0][strIng]}: <span id="calCnt${i-1}"></span> Calories</p>
         	</span>
 			
 			`);
 
-			appendCalorie(response.meals[0][strIng], response.meals[0][strMeas], i);
+			appendCalorie(response.meals[0][strIng], response.meals[0][strMeas], i-1);
 
 			strIng = "strIngredient" + i;
 			strMeas = "strMeasure" + i;
 		}
 		//At this point, i - 1 is the total amount of ingredients
-
+		$("#recipe-results").append(`
+		<p>Total Calories: <span id="total-calories"></span></p>
+		`);
 		//Call for total calories and function here
 		//These should be in separate functions because we want to be able to reset them if we remove an ingredient
-
+		// put element where total calories are
+		displayTotalCal(i-1);
 	});
 
 }
@@ -58,9 +61,9 @@ function appendCalorie(ingredient, amount, index){
 	var input = temp.join("%20");
 
 	var settings = {
-    	"async": true,
+    	"async": false,
 		"crossDomain": true,
-		"url": "http://api.edamam.com/api/nutrition-data?app_id=e24df21e&app_key=6cbe820b002b9470dcefe91f4b454270&ingr=" + input,
+		"url": "http://api.edamam.com/api/nutrition-data?app_id=0f7829ed&app_key=7d6cf61698734025c3847baa596cc57a&ingr=" + input,
     	"method": "GET"
 	}
 
@@ -77,7 +80,17 @@ function appendCalorie(ingredient, amount, index){
 }
 
 //put function to display total calories and exercise chart below here
+function displayTotalCal(ingAmt) {
+	var total=0;
 
+		for (let i = 1; i <= ingAmt; i++) {
+			const element = parseInt($(`#calCnt${i}`).text());
+			total += element;
+		}
+	$("#total-calories").text(total);
+
+
+}
 //put function to handle deleting an ingredient below here
 
 //put an event listner for the buttons below here
