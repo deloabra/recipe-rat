@@ -1,8 +1,30 @@
-//To be replaced with and event listner
+//Recipe Search button handler
 $("#findRecipe").on("click", function() {
 	event.preventDefault();
 	search($("#keywordInput").val())
 });
+
+$("#recipe-results").on("click", function(event){
+	const element = event.target;
+
+	//end the function if the an x-button wasn't clicked
+	if($(element).attr("class").indexOf("x-button") === -1){
+		return;
+	}
+	
+	//remove the line that had the button
+	$($(element).parent()).remove();
+
+	//get the new amount of ingredients and update each ingredients id to match it's new position
+
+});
+
+//reapplies the calCnt id's to match their order
+//returns the new number of ingredients
+function updateIngredients(){
+
+}
+
 // search("sandwich")
 //searches for a recipe and displays the ingredients
 function search(searchTerm){
@@ -31,13 +53,15 @@ function search(searchTerm){
 			$("#recipe-results").append(`
 			
 			<span class="ingredient-line">
-            <button type="button" class="btn btn-danger fas fa-times x-button"></button>
-            <p class="ingredient-info">${response.meals[0][strMeas]} ${response.meals[0][strIng]}: <span id="calCnt${i-1}"></span> Calories</p>
+            	<button type="button" class="btn btn-danger fas fa-times x-button"></button>
+            	<p class="ingredient-info">${response.meals[0][strMeas]} ${response.meals[0][strIng]}: <span id="calCnt${i-1}"></span> Calories</p>
         	</span>
 			
 			`);
 
-			appendCalorie(response.meals[0][strIng], response.meals[0][strMeas], i-1);
+
+			//TEMPORARY ---- REMOVE COMMENT ATTRIBUTE OF BELOW LINE LATER
+			//appendCalorie(response.meals[0][strIng], response.meals[0][strMeas], i-1);
 
 			strIng = "strIngredient" + i;
 			strMeas = "strMeasure" + i;
