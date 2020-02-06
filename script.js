@@ -17,7 +17,25 @@ function search(searchTerm){
 	$.ajax(mealDB).done(function (response) {
 		console.log(response)
 		$("#recipe-results").html("");
+		if (response.meals === null) {
+			$("#recipe-results").append('<h2 class="text-center display-3"> No results found </h2>');
+			return;		
+		}
+
+
 		$("#recipe-results").append(`<h2 class="text-center display-3 recipe-name">${response.meals[0].strMeal}</h2>`)
+		
+		var imgURL = response.meals[0].strMealThumb;
+        //   // Creating an element to hold the image
+        
+
+		//   // Appending the image
+		if (imgURL != undefined) {
+			var image = $("<img>").attr("src", imgURL);
+			
+		}
+		$("#recipe-results").append(image);
+		
 
 
 		//Add each ingredient to results
