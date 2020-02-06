@@ -16,13 +16,29 @@ $("#recipe-results").on("click", function(event){
 	$($(element).parent()).remove();
 
 	//get the new amount of ingredients and update each ingredients id to match it's new position
-
+	displayTotalCal(updateIngredients());
 });
 
 //reapplies the calCnt id's to match their order
-//returns the new number of ingredients
+//also returns the new number of ingredients
 function updateIngredients(){
+	let ingredientAmt = 0;
 
+	let resultsChildren = $("#recipe-results").children();
+
+	//Recalculate the amount of ingredients and reapply classes
+	for(let resultIndex = 0, buttonIndex = 1; resultIndex < resultsChildren.length; resultIndex++){
+		const $currentElement = $(resultsChildren[resultIndex]);
+		
+		//only change things if they are an ingredient line
+		if($currentElement.attr("class") === "ingredient-line"){
+			ingredientAmt++;
+			
+			//update the class of the span
+			$($($currentElement.children()[1]).children()[0]).attr("id", `calCnt${ingredientAmt}`);
+		}
+	}
+	return ingredientAmt;
 }
 
 // search("sandwich")
@@ -60,8 +76,7 @@ function search(searchTerm){
 			`);
 
 
-			//TEMPORARY ---- REMOVE COMMENT ATTRIBUTE OF BELOW LINE LATER
-			//appendCalorie(response.meals[0][strIng], response.meals[0][strMeas], i-1);
+			appendCalorie(response.meals[0][strIng], response.meals[0][strMeas], i-1);
 
 			strIng = "strIngredient" + i;
 			strMeas = "strMeasure" + i;
