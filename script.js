@@ -1,6 +1,9 @@
 //To be replaced with and event listner
-search("kumpir");
-
+$("#findRecipe").on("click", function() {
+	event.preventDefault();
+	search($("#keywordInput").val())
+});
+// search("sandwich")
 //searches for a recipe and displays the ingredients
 function search(searchTerm){
 
@@ -12,9 +15,9 @@ function search(searchTerm){
 	};
 
 	$.ajax(mealDB).done(function (response) {
-		
+		console.log(response)
 		$("#recipe-results").html("");
-		$("#recipe-results").append(`<h2 class="text-center display-3 recipe-name">${response.meals[0].strMeal}</h2>`);
+		$("#recipe-results").append(`<h2 class="text-center display-3 recipe-name">${response.meals[0].strMeal}</h2>`)
 
 
 		//Add each ingredient to results
