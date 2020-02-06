@@ -1,11 +1,17 @@
+body {
+    
+    font-family: 'Quicksand', sans-serif;
+}
+
 header {
     text-align: center;
-    font-size: 80px;
+    font-size: 60px;
     background-color: #9bb5fd;
-    color: whitesmoke;
+    color: white;
     padding-top: 10px;
     padding-bottom: 12px;
     margin: 15px 30px;
+    font-weight: bold;
 }
 
 .x-button{
@@ -22,4 +28,23 @@ header {
 a {
 font-size: 40pt;
 color: black;
+align-items: center;
+text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: lightslategray;
+}
+
+span {
+    line-height: 1.5em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 15px;
+}
+
+.total-cal {
+    font-size: 20pt;
+    padding-top: 5px;
 }

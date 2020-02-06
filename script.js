@@ -104,7 +104,7 @@ function search(searchTerm){
 		//Call for total calories and function here
 		//These should be in separate functions because we want to be able to reset them if we remove an ingredient
 		$("#recipe-results").append(`
-		<p>Total Calories: <span id="total-calories"></span></p>
+		<p class="total-cal">Total Calories: <span id="total-calories"></span></p>
 		`);
 		
 		displayTotalCal(i-1);

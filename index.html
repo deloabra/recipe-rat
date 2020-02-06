@@ -9,6 +9,9 @@
     <!-- Link Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <!-- Link to font-family -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+
     <!-- Link FontAwesome -->
     <link
     rel="stylesheet"
@@ -16,7 +19,6 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
     crossorigin="anonymous"
     />
-
     <!-- Link Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -34,7 +36,9 @@
       <!-- AJAX call -->
         <button type="button" id="findRecipe" value="submit" class="btn btn-dark">Submit</button>
         </div>
-        
+        <section class="jumbotron" id="recipe-results">
+        Search for a dish to get a recipe.
+    </section>
     </form>
     </div>
 
@@ -44,9 +48,7 @@
 
 
     <!-- Results Shell -->
-    <section class="jumbotron" id="recipe-results">
-        Search for a dish to get a recipe.
-    </section>
+    
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
