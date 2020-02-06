@@ -106,8 +106,9 @@ function search(searchTerm){
 		$("#recipe-results").append(`
 		<p>Total Calories: <span id="total-calories"></span></p>
 		`);
-		
 		displayTotalCal(i-1);
+
+
 	});
 
 }
@@ -124,7 +125,7 @@ function appendCalorie(ingredient, amount, index){
 	var settings = {
     	"async": false,
 		"crossDomain": true,
-		"url": "http://api.edamam.com/api/nutrition-data?app_id=0f7829ed&app_key=7d6cf61698734025c3847baa596cc57a&ingr=" + input,
+		"url": "https://api.edamam.com/api/nutrition-data?app_id=0f7829ed&app_key=7d6cf61698734025c3847baa596cc57a&ingr=" + input,
     	"method": "GET"
 	}
 
@@ -149,7 +150,41 @@ function displayTotalCal(ingAmt) {
 			total += element;
 		}
 	$("#total-calories").text(total);
+	$("#bar-chart-horizontal").remove();
+	$("#recipe-results").append(`<canvas id="bar-chart-horizontal" width="500" height="100"></canvas>`);
+    
+var calories= total;
+var caloriespermileRun= 149;
+var caloriespermileBike= 64;
+var caloriespermileSwim= 572;
+var caloriespermileWalk= 100;
+var run= (calories/caloriespermileRun);
+var bike= (calories/caloriespermileBike);
+var swim= (calories/caloriespermileSwim);
+var walk= (calories/caloriespermileWalk);
+console.log(run + " miles needed to run!");
 
+new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
+    data: {
+
+      labels: ["Running", "Biking", "Swimming", "Walking your dog!"],
+      datasets: [
+        { 
+          label: "Distance",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: [run,bike,swim,walk],
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Miles needed to burn off this meal!'
+      }
+    }
+});
 
 }
 //put function to handle deleting an ingredient below here
