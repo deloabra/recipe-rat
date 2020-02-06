@@ -8,8 +8,13 @@ header {
     margin: 15px 30px;
 }
 
-.outPutSection{
+.x-button{
+    display: inline;
+}
+.ingredient-info{
+    display: inline;
+}
 
-
-    
+.ingredient-line{
+    display: block;
 }
