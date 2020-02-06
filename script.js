@@ -1,9 +1,46 @@
-//To be replaced with and event listner
+//Recipe Search button handler
 $("#findRecipe").on("click", function() {
 	event.preventDefault();
 	search($("#keywordInput").val())
 });
-// search("sandwich")
+
+$("#recipe-results").on("click", function(event){
+	const element = event.target;
+
+	//end the function if the an x-button wasn't clicked
+	if($(element).attr("class").indexOf("x-button") === -1){
+		return;
+	}
+	
+	//remove the line that had the button
+	$($(element).parent()).remove();
+
+	//get the new amount of ingredients and update each ingredients id to match it's new position
+	displayTotalCal(updateIngredients());
+});
+
+//reapplies the calCnt id's to match their order
+//also returns the new number of ingredients
+function updateIngredients(){
+	let ingredientAmt = 0;
+
+	let resultsChildren = $("#recipe-results").children();
+
+	//Recalculate the amount of ingredients and reapply classes
+	for(let resultIndex = 0, buttonIndex = 1; resultIndex < resultsChildren.length; resultIndex++){
+		const $currentElement = $(resultsChildren[resultIndex]);
+		
+		//only change things if they are an ingredient line
+		if($currentElement.attr("class") === "ingredient-line"){
+			ingredientAmt++;
+			
+			//update the class of the span
+			$($($currentElement.children()[1]).children()[0]).attr("id", `calCnt${ingredientAmt}`);
+		}
+	}
+	return ingredientAmt;
+}
+
 //searches for a recipe and displays the ingredients
 function search(searchTerm){
 
@@ -15,7 +52,6 @@ function search(searchTerm){
 	};
 
 	$.ajax(mealDB).done(function (response) {
-		console.log(response)
 		$("#recipe-results").html("");
 		if (response.meals === null) {
 			$("#recipe-results").append('<h2 class="text-center display-3"> No results found </h2>');
@@ -49,24 +85,26 @@ function search(searchTerm){
 			$("#recipe-results").append(`
 			
 			<span class="ingredient-line">
-            <button type="button" class="btn btn-danger fas fa-times x-button"></button>
-            <p class="ingredient-info">${response.meals[0][strMeas]} ${response.meals[0][strIng]}: <span id="calCnt${i-1}"></span> Calories</p>
+            	<button type="button" class="btn btn-danger fas fa-times x-button"></button>
+            	<p class="ingredient-info">${response.meals[0][strMeas]} ${response.meals[0][strIng]}: <span id="calCnt${i-1}"></span> Calories</p>
         	</span>
 			
 			`);
+
 
 			appendCalorie(response.meals[0][strIng], response.meals[0][strMeas], i-1);
 
 			strIng = "strIngredient" + i;
 			strMeas = "strMeasure" + i;
 		}
+
 		//At this point, i - 1 is the total amount of ingredients
+		//Call for total calories and function here
+		//These should be in separate functions because we want to be able to reset them if we remove an ingredient
 		$("#recipe-results").append(`
 		<p>Total Calories: <span id="total-calories"></span></p>
 		`);
-		//Call for total calories and function here
-		//These should be in separate functions because we want to be able to reset them if we remove an ingredient
-		// put element where total calories are
+		
 		displayTotalCal(i-1);
 	});
 
