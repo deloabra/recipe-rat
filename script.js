@@ -41,7 +41,6 @@ function updateIngredients(){
 	return ingredientAmt;
 }
 
-// search("sandwich")
 //searches for a recipe and displays the ingredients
 function search(searchTerm){
 
@@ -53,7 +52,6 @@ function search(searchTerm){
 	};
 
 	$.ajax(mealDB).done(function (response) {
-		console.log(response)
 		$("#recipe-results").html("");
 		$("#recipe-results").append(`<h2 class="text-center display-3 recipe-name">${response.meals[0].strMeal}</h2>`)
 
@@ -81,13 +79,14 @@ function search(searchTerm){
 			strIng = "strIngredient" + i;
 			strMeas = "strMeasure" + i;
 		}
+
 		//At this point, i - 1 is the total amount of ingredients
+		//Call for total calories and function here
+		//These should be in separate functions because we want to be able to reset them if we remove an ingredient
 		$("#recipe-results").append(`
 		<p>Total Calories: <span id="total-calories"></span></p>
 		`);
-		//Call for total calories and function here
-		//These should be in separate functions because we want to be able to reset them if we remove an ingredient
-		// put element where total calories are
+		
 		displayTotalCal(i-1);
 	});
 
