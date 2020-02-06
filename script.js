@@ -22,16 +22,18 @@ function search(searchTerm){
 			return;		
 		}
 
-
-		$("#recipe-results").append(`<h2 class="text-center display-3 recipe-name">${response.meals[0].strMeal}</h2>`)
+		var recipeLink = response.meals[0].strSource;
+		console.log(recipeLink)
+		$("#recipe-results").append(`<a href="${recipeLink}" class="text-center display-3 recipe-name" target="_blank">${response.meals[0].strMeal}</a>`);
 		
 		var imgURL = response.meals[0].strMealThumb;
         //   // Creating an element to hold the image
         
-
+		
 		//   // Appending the image
 		if (imgURL != undefined) {
 			var image = $("<img>").attr("src", imgURL);
+			
 			
 		}
 		$("#recipe-results").append(image);

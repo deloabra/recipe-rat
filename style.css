@@ -18,3 +18,8 @@ header {
 .ingredient-line{
     display: block;
 }
+
+a {
+font-size: 40pt;
+color: black;
+}
