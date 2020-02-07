@@ -1,23 +1,4 @@
-//reapplies the calCnt id's to match their order
-//also returns the new number of ingredients
-function updateIngredients(){
-	let ingredientAmt = 0;
-	let resultsChildren = $("#recipe-results").children();
-
-	//Recalculate the amount of ingredients and reapply classes
-	for(let resultIndex = 0, buttonIndex = 1; resultIndex < resultsChildren.length; resultIndex++){
-		const $currentElement = $(resultsChildren[resultIndex]);
-		
-		//only change things if they are an ingredient line
-		if($currentElement.attr("class") === "ingredient-line"){
-			ingredientAmt++;
-			
-			//update the class of the span
-			$($($currentElement.children()[1]).children()[0]).attr("id", `calCnt${ingredientAmt}`);
-		}
-	}
-	return ingredientAmt;
-}
+//No functions get run until an event happens
 
 //searches for a recipe and displays the ingredients
 
@@ -184,6 +165,27 @@ function displayTotalCal(ingAmt) {
       	}
     	}
 	});
+}
+
+//reapplies the calCnt id's to match their order
+//also returns the new number of ingredients
+function updateIngredients(){
+	let ingredientAmt = 0;
+	let resultsChildren = $("#recipe-results").children();
+
+	//Recalculate the amount of ingredients and reapply classes
+	for(let resultIndex = 0, buttonIndex = 1; resultIndex < resultsChildren.length; resultIndex++){
+		const $currentElement = $(resultsChildren[resultIndex]);
+		
+		//only change things if they are an ingredient line
+		if($currentElement.attr("class") === "ingredient-line"){
+			ingredientAmt++;
+			
+			//update the class of the span
+			$($($currentElement.children()[1]).children()[0]).attr("id", `calCnt${ingredientAmt}`);
+		}
+	}
+	return ingredientAmt;
 }
 
 //Recipe Search button handler
