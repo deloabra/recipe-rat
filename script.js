@@ -17,26 +17,32 @@ function search(searchTerm){
 
 	//Make query to recipe API
 	$.ajax(mealDB).done(function (response) {
-
-		//Clear results section on HTML so we can put something new in it
-		$("#recipe-results").html("");
-
-		//handler if no result
+		$("#welcome-title").html("");
+		$("#recipe-title").html("");
+		$("#ingredient-list").html("");
+		$("#dish-image").html("");
 		if (response.meals === null) {
-			$("#recipe-results").append('<h2 class="text-center display-3"> No results found </h2>');
+			$("#recipe-title").append('<h2 class="text-center display-3"> No results found </h2>');
 			return;		
 		}
 
 		//Get and display recipe title
 		var recipeLink = response.meals[0].strSource;
-		$("#recipe-results").append(`<a href="${recipeLink}" class="text-center display-3 recipe-name" target="_blank">${response.meals[0].strMeal}</a>`);
+		console.log(recipeLink)
+		$("#recipe-title").append(`<center><a href="${recipeLink}" class="text-center display-3 recipe-name" target="_blank">${response.meals[0].strMeal}</a></center>`);
 		
 		//Append picture of meal
 		var imgURL = response.meals[0].strMealThumb;
+        //   // Creating an element to hold the image
+        console.log(imgURL);
+		
+		//   // Appending the image
 		if (imgURL != undefined) {
-			var image = $("<img>").attr("src", imgURL);	
+			var image = $("<img class='food-pic img-fluid' style='height: 300px; width: auto;'>").attr("src", imgURL);
+			
+			$("#dish-image").append(image);
 		}
-		$("#recipe-results").append(image);
+		
 		
 
 
@@ -48,7 +54,7 @@ function search(searchTerm){
 			i++;
 
 			//add new line with x button, ingredient name, and calorie amount
-			$("#recipe-results").append(`
+			$("#ingredient-list").append(`
 			
 			<span class="ingredient-line">
             	<button type="button" class="btn btn-danger fas fa-times x-button"></button>
@@ -65,9 +71,9 @@ function search(searchTerm){
 		}
 
 		//At this point, i - 1 is the total amount of ingredients
-
-		//Make spot to dynamically place Total calories
-		$("#recipe-results").append(`
+		//Call for total calories and function here
+		//These should be in separate functions because we want to be able to reset them if we remove an ingredient
+		$("#ingredient-list").append(`
 		<p class="total-cal">Total Calories: <span id="total-calories"></span></p>
 		`);
 
@@ -98,7 +104,7 @@ function appendCalorie(ingredient, amount, index){
 	var settings = {
     	"async": false,
 		"crossDomain": true,
-		"url": "https://api.edamam.com/api/nutrition-data?app_id=395930c7&app_key=6556f73460c0aab9c0e3bd2d000aa822&ingr=" + input,
+		"url": "http://api.edamam.com/api/nutrition-data?app_id=395930c7&app_key=6556f73460c0aab9c0e3bd2d000aa822&ingr=" + input,
     	"method": "GET"
 	}
 
@@ -137,7 +143,7 @@ function displayTotalCal(ingAmt) {
 
 	//prepare chart
 	$("#bar-chart-horizontal").remove();
-	$("#recipe-results").append(`<canvas id="bar-chart-horizontal" width="500" height="100"></canvas>`);
+	$("#recipe-results").append(`<canvas class='col-md-12 shadow-sm' id="bar-chart-horizontal" width="500" height="100" ></canvas>`);
     
 	var calories= total;
 	var caloriespermileRun= 149;

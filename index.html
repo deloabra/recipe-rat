@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>RecipeRat</title>
 
     <!-- Link Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -30,14 +30,19 @@
 
     <!-- This form will be where users input data about the recipes -->
     <form>
-        <div class="form-group">
+        <div class="form-group row">
           <label for="keywordInput"></label>
-          <input type="text" class="form-control" id="keywordInput" placeholder="Pasta Carbonara">
+          <input type="text" class="form-control col-md-10 ml-3" id="keywordInput" placeholder="Search for a dish to get a recipe">
       <!-- AJAX call -->
-        <button type="button" id="findRecipe" value="submit" class="btn btn-dark">Submit</button>
+        <button type="button" id="findRecipe" value="submit" class="btn btn-dark col-md-1 ml-2">Submit</button>
         </div>
-        <section class="jumbotron" id="recipe-results">
-        Search for a dish to get a recipe.
+        <section class="jumbotron row" id="recipe-results">
+            <div class="col-md-12" id="welcome-title">
+                <h1>Welcome to RecipeRat!</h1>
+            </div>
+            <div class="col-md-12" id="recipe-title"></div>
+            <div class="col-md-6 p-5 pb-0 h-50" id="ingredient-list"></div>
+            <div class="col-md-5 p-5 pb-0" id="dish-image"></div>
     </section>
     </form>
     </div>

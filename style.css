@@ -26,10 +26,9 @@ header {
 }
 
 a {
-font-size: 40pt;
-color: black;
-align-items: center;
-text-decoration: none;
+    font-size: 40pt;
+    color: black;
+    text-decoration: none;
 }
 
 a:hover {
@@ -39,7 +38,7 @@ a:hover {
 
 span {
     line-height: 1.5em;
-    padding-top: 5px;
+    padding-top: 15px;
     padding-bottom: 5px;
     margin-top: 15px;
 }
@@ -47,4 +46,21 @@ span {
 .total-cal {
     font-size: 20pt;
     padding-top: 5px;
+}
+
+.food-pic {
+    height: 20%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 4px;
+}
+
+h1 {
+    font-size: 100pt;
+    text-align: center;
+}
+
+canvas {
+    background-color: white;
+    border-radius: 20px;
 }
