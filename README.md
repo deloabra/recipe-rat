@@ -1,8 +1,7 @@
-# Recipe finder and calorie counter - Name pending
+# Recipe Rat
 
-// API https://www.themealdb.com/api.php
-// API https://rapidapi.com/edamam/api/edamam-food-and-grocery-database
+Recipe Rat is a front-end website takes a user inputted search term and searches through theMealDB API to search for a recipe based on the search term. The website then displays the recipe name, a link to the recipe page (if available), a picture (if available), a list of the ingredients and their calorie count based on the Edamam nutritional analysis api, the total calories, and a graph showing how much exercise you would need to do to burn off the meal. The user also has the option of removing any of the ingredients from the ingredient list, and seeing how the total calories and chart changes dynamically based on the new ingredient list.
 
-Project description:
+<b>Tools Used:</b> HTML/CSS, Javascript, Bootstrap, jQuery, theMealDB API (for searching for recipes), Edamam Nutritional Analysis API (for searching for calorie counts of each ingredient)
 
-The purpose of the project is for a user to be able to search for a recipe entering a keyword. The recipe is found by using the mealDatabase API. The results will display meal choices that correspond to the key-word. Once user picks a meal it will display the ingredients, the calories for each ingredient and finally the total calorie count of the meal. As a fun fact we will inform the user of how many laps around the block he/she will need to run in order to burn the calories consumed. The user will have the option of removing ingredients from the recipe in order to decrease the calorie intake and lower the number of laps needed to burn off the meal.
+<h3><a href="https://deloabra.github.io/project-1/">Deployed Website</a></h3>
