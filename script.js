@@ -98,12 +98,16 @@ function appendCalorie(ingredient, amount, index){
 	var settings = {
     	"async": false,
 		"crossDomain": true,
-		"url": "https://api.edamam.com/api/nutrition-data?app_id=0f7829ed&app_key=7d6cf61698734025c3847baa596cc57a&ingr=" + input,
+		"url": "https://api.edamam.com/api/nutrition-data?app_id=395930c7&app_key=6556f73460c0aab9c0e3bd2d000aa822&ingr=" + input,
     	"method": "GET"
 	}
 
 	$.ajax(settings).done(function (response) {
 		calories = response.calories;
+
+		if(calories === NaN || calories === null || calories === undefined){
+			calories = 0;
+		}
 
 		//Prints the amount of calories to the span inside of class "ingredient-info"
 		$(`#calCnt${index}`).text(calories);
