@@ -105,6 +105,7 @@ function appendCalorie(ingredient, amount, index){
 	$.ajax(settings).done(function (response) {
 		calories = response.calories;
 
+		//make sure nothing breaks if api call doesn't work
 		if(calories === NaN || calories === null || calories === undefined){
 			calories = 0;
 		}
