@@ -123,7 +123,7 @@ function appendCalorie(ingredient, amount, index){
 	var settings = {
     	"async": false,
 		"crossDomain": true,
-		"url": "https://api.edamam.com/api/nutrition-data?app_id=0f7829ed&app_key=7d6cf61698734025c3847baa596cc57a&ingr=" + input,
+		"url": "https://api.edamam.com/api/nutrition-data?app_id=395930c7&app_key=6556f73460c0aab9c0e3bd2d000aa822&ingr=" + input,
     	"method": "GET"
 	}
 
@@ -169,14 +169,19 @@ new Chart(document.getElementById("bar-chart-horizontal"), {
       labels: ["Running", "Biking", "Swimming", "Walking your dog!"],
       datasets: [
         { 
-          label: "Distance",
+		  label: "Distance",
+		  data: [run,bike,swim,walk],
           backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-          data: [run,bike,swim,walk],
+		  borderColor: "#000000",
+		  borderWidth: 2,
+		  hoverBackgroundColor: "#ffff66", 
+		  hoverBorderColor: "#000000",
+		  hoverBorderWidth: 5,
         }
       ]
     },
     options: {
-      legend: { display: false },
+	  legend: { display: false,},
       title: {
         display: true,
         text: 'Miles needed to burn off this meal!'
