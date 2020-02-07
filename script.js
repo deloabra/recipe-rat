@@ -52,27 +52,30 @@ function search(searchTerm){
 	};
 
 	$.ajax(mealDB).done(function (response) {
-		$("#recipe-results").html("");
+		$("#welcome-title").html("");
+		$("#recipe-title").html("");
+		$("#ingredient-list").html("");
+		$("#dish-image").html("");
 		if (response.meals === null) {
-			$("#recipe-results").append('<h2 class="text-center display-3"> No results found </h2>');
+			$("#recipe-title").append('<h2 class="text-center display-3"> No results found </h2>');
 			return;		
 		}
 
 		var recipeLink = response.meals[0].strSource;
 		console.log(recipeLink)
-		$("#recipe-results").append(`<a href="${recipeLink}" class="text-center display-3 recipe-name" target="_blank">${response.meals[0].strMeal}</a>`);
+		$("#recipe-title").append(`<center><a href="${recipeLink}" class="text-center display-3 recipe-name" target="_blank">${response.meals[0].strMeal}</a></center>`);
 		
 		var imgURL = response.meals[0].strMealThumb;
         //   // Creating an element to hold the image
-        
+        console.log(imgURL);
 		
 		//   // Appending the image
 		if (imgURL != undefined) {
-			var image = $("<img>").attr("src", imgURL);
+			var image = $("<img class='food-pic'>").attr("src", imgURL);
 			
-			
+			$("#dish-image").append(image);
 		}
-		$("#recipe-results").append(image);
+		
 		
 
 
@@ -84,7 +87,7 @@ function search(searchTerm){
 			i++;
 
 			//add new line with x button, ingredient name, and calorie amount
-			$("#recipe-results").append(`
+			$("#ingredient-list").append(`
 			
 			<span class="ingredient-line">
             	<button type="button" class="btn btn-danger fas fa-times x-button"></button>
@@ -103,7 +106,7 @@ function search(searchTerm){
 		//At this point, i - 1 is the total amount of ingredients
 		//Call for total calories and function here
 		//These should be in separate functions because we want to be able to reset them if we remove an ingredient
-		$("#recipe-results").append(`
+		$("#ingredient-list").append(`
 		<p class="total-cal">Total Calories: <span id="total-calories"></span></p>
 		`);
 		
@@ -124,7 +127,7 @@ function appendCalorie(ingredient, amount, index){
 	var settings = {
     	"async": false,
 		"crossDomain": true,
-		"url": "http://api.edamam.com/api/nutrition-data?app_id=0f7829ed&app_key=7d6cf61698734025c3847baa596cc57a&ingr=" + input,
+		"url": "http://api.edamam.com/api/nutrition-data?app_id=395930c7&app_key=6556f73460c0aab9c0e3bd2d000aa822&ingr=" + input,
     	"method": "GET"
 	}
 
