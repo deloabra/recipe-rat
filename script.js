@@ -38,7 +38,7 @@ function search(searchTerm){
 		
 		//   // Appending the image
 		if (imgURL != undefined) {
-			var image = $("<img class='food-pic'>").attr("src", imgURL);
+			var image = $("<img class='food-pic img-fluid' style='height: 300px; width: auto;'>").attr("src", imgURL);
 			
 			$("#dish-image").append(image);
 		}
@@ -143,7 +143,7 @@ function displayTotalCal(ingAmt) {
 
 	//prepare chart
 	$("#bar-chart-horizontal").remove();
-	$("#recipe-results").append(`<canvas id="bar-chart-horizontal" width="500" height="100"></canvas>`);
+	$("#recipe-results").append(`<canvas class='col-md-12 shadow-sm' id="bar-chart-horizontal" width="500" height="100" ></canvas>`);
     
 	var calories= total;
 	var caloriespermileRun= 149;
