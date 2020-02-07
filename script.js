@@ -104,11 +104,7 @@ function appendCalorie(ingredient, amount, index){
 	var settings = {
     	"async": false,
 		"crossDomain": true,
-<<<<<<< HEAD
 		"url": "https://api.edamam.com/api/nutrition-data?app_id=395930c7&app_key=6556f73460c0aab9c0e3bd2d000aa822&ingr=" + input,
-=======
-		"url": "http://api.edamam.com/api/nutrition-data?app_id=395930c7&app_key=6556f73460c0aab9c0e3bd2d000aa822&ingr=" + input,
->>>>>>> master
     	"method": "GET"
 	}
 
@@ -149,7 +145,6 @@ function displayTotalCal(ingAmt) {
 	$("#bar-chart-horizontal").remove();
 	$("#recipe-results").append(`<canvas class='col-md-12 shadow-sm' id="bar-chart-horizontal" width="500" height="100" ></canvas>`);
     
-<<<<<<< HEAD
 var calories= total;
 var caloriespermileRun= 149;
 var caloriespermileBike= 64;
@@ -182,34 +177,6 @@ new Chart(document.getElementById("bar-chart-horizontal"), {
     options: {
 	  legend: { display: false,},
       title: {
-=======
-	var calories= total;
-	var caloriespermileRun= 149;
-	var caloriespermileBike= 64;
-	var caloriespermileSwim= 572;
-	var caloriespermileWalk= 100;
-	var run= (calories/caloriespermileRun);
-	var bike= (calories/caloriespermileBike);
-	var swim= (calories/caloriespermileSwim);
-	var walk= (calories/caloriespermileWalk);
-
-	//Create the chart using the chart.js library
-	new Chart(document.getElementById("bar-chart-horizontal"), {
-    	type: 'horizontalBar',
-    	data: {
-
-      		labels: ["Running", "Biking", "Swimming", "Walking your dog!"],
-      		datasets: [
-        	{ 
-          		label: "Distance",
-          		backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-          		data: [run,bike,swim,walk],
-        	}]
-    	},
-    	options: {
-      	legend: { display: false },
-      	title: {
->>>>>>> master
         display: true,
         text: 'Miles needed to burn off this meal!'
       	}
