@@ -21,6 +21,7 @@ function search(searchTerm){
 		$("#recipe-title").html("");
 		$("#ingredient-list").html("");
 		$("#dish-image").html("");
+		$("#exercise-chart").html("");
 		if (response.meals === null) {
 			$("#recipe-title").append('<h2 class="text-center display-3"> No results found </h2>');
 			return;		
