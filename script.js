@@ -138,49 +138,50 @@ function displayTotalCal(ingAmt) {
 		total += element;
 	}
 
+	console.log(total);
 	//put total calories in the results section
 	$("#total-calories").text(total);
 
 	//prepare chart
 	$("#bar-chart-horizontal").remove();
-	$("#recipe-results").append(`<canvas class='col-md-12 shadow-sm' id="bar-chart-horizontal" width="500" height="100" ></canvas>`);
+	$("#exercise-chart").append(`<canvas class='shadow-sm' id="bar-chart-horizontal" width="500" height="100" ></canvas>`);
     
-var calories= total;
-var caloriespermileRun= 149;
-var caloriespermileBike= 64;
-var caloriespermileSwim= 572;
-var caloriespermileWalk= 100;
-var run= (calories/caloriespermileRun);
-var bike= (calories/caloriespermileBike);
-var swim= (calories/caloriespermileSwim);
-var walk= (calories/caloriespermileWalk);
-console.log(run + " miles needed to run!");
+	var calories= total;
+	var caloriespermileRun= 149;
+	var caloriespermileBike= 64;
+	var caloriespermileSwim= 572;
+	var caloriespermileWalk= 100;
+	var run= (calories/caloriespermileRun);
+	var bike= (calories/caloriespermileBike);
+	var swim= (calories/caloriespermileSwim);
+	var walk= (calories/caloriespermileWalk);
+	console.log(run + " miles needed to run!");
 
-new Chart(document.getElementById("bar-chart-horizontal"), {
-    type: 'horizontalBar',
-    data: {
+	new Chart(document.getElementById("bar-chart-horizontal"), {
+    	type: 'horizontalBar',
+    	data: {
 
-      labels: ["Running", "Biking", "Swimming", "Walking your dog!"],
-      datasets: [
-        { 
-		  label: "Distance",
-		  data: [run,bike,swim,walk],
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-		  borderColor: "#000000",
-		  borderWidth: 2,
-		  hoverBackgroundColor: "#ffff66", 
-		  hoverBorderColor: "#000000",
-		  hoverBorderWidth: 5,
-        }
-      ]
-    },
-    options: {
-	  legend: { display: false,},
-      title: {
-        display: true,
-        text: 'Miles needed to burn off this meal!'
-      	}
-    	}
+    	  labels: ["Running", "Biking", "Swimming", "Walking your dog!"],
+    	  datasets: [
+        	{ 
+		  	label: "Distance",
+		  	data: [run,bike,swim,walk],
+          	backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+		  	borderColor: "#000000",
+		  	borderWidth: 2,
+		  	hoverBackgroundColor: "#ffff66", 
+		  	hoverBorderColor: "#000000",
+		  	hoverBorderWidth: 5,
+        	}
+      	]
+    	},
+    	options: {
+		  legend: { display: false,},
+    	  title: {
+    	    display: true,
+    	    text: 'Miles needed to burn off this meal!'
+    	  	}
+    		}
 	});
 }
 
@@ -188,7 +189,7 @@ new Chart(document.getElementById("bar-chart-horizontal"), {
 //also returns the new number of ingredients
 function updateIngredients(){
 	let ingredientAmt = 0;
-	let resultsChildren = $("#recipe-results").children();
+	let resultsChildren = $("#ingredient-list").children();
 
 	//Recalculate the amount of ingredients and reapply classes
 	for(let resultIndex = 0, buttonIndex = 1; resultIndex < resultsChildren.length; resultIndex++){
