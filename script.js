@@ -29,13 +29,11 @@ function search(searchTerm){
 
 		//Get and display recipe title
 		var recipeLink = response.meals[0].strSource;
-		console.log(recipeLink)
 		$("#recipe-title").append(`<center><a href="${recipeLink}" class="text-center display-3 recipe-name" target="_blank">${response.meals[0].strMeal}</a></center>`);
 		
 		//Append picture of meal
 		var imgURL = response.meals[0].strMealThumb;
         //   // Creating an element to hold the image
-        console.log(imgURL);
 		
 		//   // Appending the image
 		if (imgURL != undefined) {
@@ -105,7 +103,7 @@ function appendCalorie(ingredient, amount, index){
 	var settings = {
     	"async": false,
 		"crossDomain": true,
-		"url": "https://api.edamam.com/api/nutrition-data?app_id=395930c7&app_key=6556f73460c0aab9c0e3bd2d000aa822&ingr=" + input,
+		"url": "https://api.edamam.com/api/nutrition-data?app_id=a4ea8bef&app_key=5010b787d64e0e7ec9ba04de8e01ae9a&ingr=" + input,
     	"method": "GET"
 	}
 
@@ -139,7 +137,6 @@ function displayTotalCal(ingAmt) {
 		total += element;
 	}
 
-	console.log(total);
 	//put total calories in the results section
 	$("#total-calories").text(total);
 
@@ -156,7 +153,6 @@ function displayTotalCal(ingAmt) {
 	var bike= (calories/caloriespermileBike);
 	var swim= (calories/caloriespermileSwim);
 	var walk= (calories/caloriespermileWalk);
-	console.log(run + " miles needed to run!");
 
 	new Chart(document.getElementById("bar-chart-horizontal"), {
     	type: 'horizontalBar',
